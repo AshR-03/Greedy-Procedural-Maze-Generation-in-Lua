@@ -36,7 +36,7 @@ A **randomized Prim's** algorithm or **Kruskal's** algorithm can be used for Maz
 ## Project Installation and Use
 
   - Download and open the `projectFile.rbxl` file from the repository. Once opened, locate `ServerScriptService` in the `Explorer` window which will contain the code required to run the maze generation.
-  - Copy the `Server.lua` script from `ServerScriptService` and paste the script **and its children** into your own Roblox Studio environment.
+  - Copy the `Init.lua` script from `ServerScriptService` and paste the script **and its children** into your own Roblox Studio environment.
   - Clicking `Run` in the `Home` tab will run the maze generation, however various customisations can be made such as:
 
     ### Maze & Cell Size + Wall Height
@@ -44,14 +44,14 @@ A **randomized Prim's** algorithm or **Kruskal's** algorithm can be used for Maz
     To amend the maze, cell and wall sizes, locate `Server.lua` and amend the following variables:
 
     ```lua
-    local boardW = 30 -- Change this variable to change the number of cells (boardW x boardW maze).
-    local cellW = 20 -- Change this variable to change the cell size (cellW x cellW cell size).
-    local h = 50 -- Change this variable to change the wall height.
+    self.BOARD_WIDTH = 30 -- Change this variable to change the number of cells (boardW x boardW maze).
+    self.CELL_WIDTH = 20 -- Change this variable to change the cell size (cellW x cellW cell size).
+    self.HEIGHT = 50 -- Change this variable to change the wall height.
     ```
     
     ### Wall Colour
 
-    To amend the wall colour, locate the `NodeClass.lua` class and alter the variable in `function nodeClass.new(i, j, w, h, boardW, boardH)`:
+    To amend the wall colour, locate the `NodeClass.lua` class and alter the variable in `nodeClass.new(i, j, w, h, boardW, boardH)`:
 
     ```lua
     self.wallColour = Color3.new(0.207843, 0.207843, 0.207843)
@@ -59,9 +59,9 @@ A **randomized Prim's** algorithm or **Kruskal's** algorithm can be used for Maz
 
     ### Maze Entrances
 
-    To add **maze entrances**, locate `Server.lua` and find the `calculateMaze()` function. In this function, **uncomment** the following code:
+    To add **maze entrances**, locate `Server.lua` and find the `Server:calculateMaze()` function. In this function, **uncomment** the following code:
     ```lua
-    checkForEntrance(current)
+    self:checkForEntrance(current)
     ```
     This will produce the result shown in **`figure 2`**:
 
@@ -71,10 +71,10 @@ A **randomized Prim's** algorithm or **Kruskal's** algorithm can be used for Maz
 
     ### Colour Maze Edge Walls
 
-    To only **colour in** the `edge walls`, locate `Server.lua` and find the `calculateMaze()` function. In this function, **uncomment** the following code:
+    To only **colour in** the `edge walls`, locate `Server.lua` and find the `Server:calculateMaze()` function. In this function, **uncomment** the following code:
 
     ```lua
-    paintEdgeWalls(current)
+    self:paintEdgeWalls(current)
     ```
     
     This will produce the result shown in **`figure 3`**:
