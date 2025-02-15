@@ -17,7 +17,7 @@ This project showcases a stack-based [greedy algorithm](https://www.geeksforgeek
 
 # Project Details
 
-To complete the project, **3** different algorithms are considered and studied, `Prims` algorithm, `Kruskal's` algorithm and a `Backtracking` algorithm using a `Stack`.
+To complete the project, **3** different algorithms are considered and studied, `Prim's` algorithm, `Kruskal's` algorithm and a `Backtracking` algorithm using a `Stack`.
 
 ![image](https://github.com/user-attachments/assets/1d7ee40b-94f3-4522-80fd-bf8be4ceca21)
 
