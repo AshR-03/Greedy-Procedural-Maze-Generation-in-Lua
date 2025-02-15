@@ -116,7 +116,7 @@ function Server:calculateMaze()
 
 		local neighbour, index = current:checkNeighbours(self.nodes);
 
-		--checkForEntrance(current)
+		--self:checkForEntrance(current)
 		--self:paintEdgeWalls(current)
 
 
