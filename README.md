@@ -81,6 +81,6 @@ A **randomized Prim's** algorithm or **Kruskal's** algorithm can be used for Maz
     
     <img src="https://github.com/user-attachments/assets/66d409bf-38e8-41a7-8007-d015820265c6" alt="Image description" width="300"/>
 
-    *Figure 3: Result of applying `paintEdgeWalls(current) on the maze generation*
+    *Figure 3: Result of applying `paintEdgeWalls(current)` on the maze generation*
     
 
