@@ -13,6 +13,7 @@ This project showcases a stack-based [greedy algorithm](https://www.geeksforgeek
   - [Wall Colour](#wall-colour)
   - [Maze Entrances](#maze-entrances)
   - [Edge Wall Colouring](#colour-maze-edge-walls)
+  - [Cyclic Mazes](#cyclic-graph-functionality-no-1x1-dead-end-points)
     
 
 # Project Details
@@ -83,4 +84,16 @@ A **randomized Prim's** algorithm or **Kruskal's** algorithm can be used for Maz
 
     *Figure 3: Result of applying `paintEdgeWalls(current)` on the maze generation*
     
+    ### Cyclic Graph Functionality (no 1x1 dead end points)
 
+    To remove all 1x1 **`dead end`** positions in the maze to make a cyclic maze, locate `Server.lua` and find the `Server:calculateMaze()` function. In this function, **uncomment** the following line of code:
+
+    ```lua
+    self:removeRandomWall(current, table.find(self.nodes, current))
+    ```
+
+    The following code added will result in `figure 4`, containing no dead ends in final maze output:
+
+    <img src="https://github.com/user-attachments/assets/a3438f23-8a7f-4247-9dd5-5e1bd3fb8c06" alt="Image description" width="300"/>
+
+    
