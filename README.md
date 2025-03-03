@@ -91,5 +91,8 @@ A **randomized Prim's** algorithm or **Kruskal's** algorithm can be used for Maz
     self:removeRandomWall(current, table.find(self.nodes, current))
     ```
 
-    The following code added will result in the walls from `figure 4` that are **shaded blue** being removed in the final maze output:
+    The following code added will result in `figure 4`, containing no dead ends in final maze output:
+
+    <img src="https://github.com/user-attachments/assets/a3438f23-8a7f-4247-9dd5-5e1bd3fb8c06" alt="Image description" width="300"/>
+
     
