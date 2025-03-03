@@ -64,7 +64,8 @@ function Server:removeWalls(currentNode, nextNode)
 end
 
 -- Function to check if an entrance needs to be made
-function Server:checkForEntrance(currentNode)
+function Server:checkForEntrance(currentNode, isTrace)
+	if isTrace then return nil end;
 	if (currentNode.x//self.CELL_WIDTH == self.BOARD_WIDTH and currentNode.y//self.CELL_WIDTH == self.BOARD_WIDTH) then
 		currentNode.walls[4]:Destroy()
 		currentNode.walls[4] = nil
@@ -90,10 +91,39 @@ function Server:paintEdgeWalls(currentNode)
 	end 
 end
 
+-- Function to remove a random wall that is not an edge node
+function Server:removeRandomWall(currentNode, nodeIndex)
+	local nonEdgeWalls = {}
+	local neighbourNodes = {}
+	
+	if (currentNode.y//self.CELL_WIDTH) ~= self.BOARD_WIDTH and currentNode.walls[3] then
+		table.insert(nonEdgeWalls, 3)
+		table.insert(neighbourNodes, self.nodes[nodeIndex + self.BOARD_WIDTH])
+	end    
+	if (currentNode.y//self.CELL_WIDTH) ~= 1 and currentNode.walls[1] then
+		table.insert(nonEdgeWalls, 1)
+		table.insert(neighbourNodes, self.nodes[nodeIndex - self.BOARD_WIDTH])
+	end        
+	if (currentNode.x//self.CELL_WIDTH) ~= self.BOARD_WIDTH and currentNode.walls[4] then
+		table.insert(nonEdgeWalls, 4)
+		table.insert(neighbourNodes, self.nodes[nodeIndex + 1])
+	end
+	if (currentNode.x//self.CELL_WIDTH) ~= 1 and currentNode.walls[2] then
+		table.insert(nonEdgeWalls, 2)
+		table.insert(neighbourNodes, self.nodes[nodeIndex - 1])
+	end
+	
+	print(nonEdgeWalls, currentNode.x, currentNode.y)
+	
+	local neighbourNode = neighbourNodes[math.random(1, #neighbourNodes)]
+	self:removeWalls(currentNode, neighbourNode)
+end
+
 -- Where the backtracking algorithm runs, loops until the stack object is empty.
 function Server:calculateMaze()
 	self.nodeStack = stackModule.new(self.CELL_WIDTH * self.CELL_WIDTH);
 	local current = self.nodes[1];
+	local isTrace = false
 
 	--Mark first one as visited and push onto stack
 	current.visited = true;
@@ -115,16 +145,19 @@ function Server:calculateMaze()
 		pointer.Position = Vector3.new(current.x, 0,current.y)
 
 		local neighbour, index = current:checkNeighbours(self.nodes);
-
-		--self:checkForEntrance(current)
+		
+		--self:checkForEntrance(current, isTrace)
 		--self:paintEdgeWalls(current)
-
-
+		
 		if neighbour ~= nil then
+			isTrace = false
 			self.nodeStack:push(current);
 			self:removeWalls(current, neighbour);
 			neighbour.visited = true;
 			self.nodeStack:push(neighbour);
+		elseif not isTrace then
+			isTrace = true
+			--self:removeRandomWall(current, table.find(self.nodes, current))
 		end
 		task.wait()
 	end
