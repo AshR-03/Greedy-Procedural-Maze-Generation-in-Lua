@@ -83,4 +83,13 @@ A **randomized Prim's** algorithm or **Kruskal's** algorithm can be used for Maz
 
     *Figure 3: Result of applying `paintEdgeWalls(current)` on the maze generation*
     
+    ### Cyclic Graph Functionality (no 1x1 dead end points)
 
+    To remove all 1x1 **`dead end`** positions in the maze to make a cyclic maze, locate `Server.lua` and find the `Server:calculateMaze()` function. In this function, **uncomment** the following line of code:
+
+    ```lua
+    self:removeRandomWall(current, table.find(self.nodes, current))
+    ```
+
+    The following code added will result in the walls from `figure 4` that are **shaded blue** being removed in the final maze output:
+    
