@@ -13,6 +13,7 @@ This project showcases a stack-based [greedy algorithm](https://www.geeksforgeek
   - [Wall Colour](#wall-colour)
   - [Maze Entrances](#maze-entrances)
   - [Edge Wall Colouring](#colour-maze-edge-walls)
+  - [Cyclic Mazes](#cyclic-graph-functionality-no-1x1-dead-end-points)
     
 
 # Project Details
